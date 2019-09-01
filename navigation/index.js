@@ -13,23 +13,38 @@ import Forgot from '../screens/Forgot';
 
 import { theme } from '../constants';
 
-const screens = createSwitchNavigator({
-    Welcome,
-    // Login,
-    // Settings,
-    // Product,
-    // Explorer,
-    // Browse,
-    // Signup,
-    // Forgot
-}, {
+const screens = createSwitchNavigator(
+    {
+        Welcome,
+        Login,
+        Settings,
+        Product,
+        Explorer,
+        Browse,
+        Signup,
+        Forgot
+    },
+    {
         defaultNavigationOptions: {
-            headerStyle: {},
-            headerBackImage: <Image />,
+            headerStyle: {
+                height: theme.sizes.base * 4,
+                backgroundColor: theme.colors.white,
+                borderBottomCollor: '#F00',
+                elevation: 0
+            },
+            headerBackImage: <Image source={require('../assets/icons/back.png')} />,
             headerBackTitle: null,
-            headerLeftContainerStyle: {},
-            headerRightContainerStyle: {}
+            headerLeftContainerStyle: {
+                alignItems: 'center',
+                marginLeft: theme.sizes.base * 2,
+                paddingRight: theme.sizes.base
+            },
+            headerRightContainerStyle: {
+                alignItems: 'center',
+                paddingRight: theme.sizes.base
+            }
         }
-    });
+    }
+);
 
 export default createAppContainer(screens);

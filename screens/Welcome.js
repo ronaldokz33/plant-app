@@ -109,7 +109,7 @@ class Welcome extends Component {
 
         return (
             <Block style={styles.container}>
-                <Block center middle flex={0.5}>
+                <Block center middle flex={0.4}>
                     <Text h1 center bold>
                         Your Home
                         <Text h1 primary>Greener</Text>

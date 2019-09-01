@@ -37,7 +37,7 @@ export default class App extends Component {
       return Asset.fromModule(img).downloadAsync();
     });
 
-    return Promises.all();
+    return Promise.all(cacheImages);
   }
 
   render() {
