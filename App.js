@@ -34,10 +34,10 @@ export default class App extends Component {
 
   handleResources = async () => {
     const cacheImages = images.map((img) => {
-      return Asset.fromModule(image).downloadAsync();
+      return Asset.fromModule(img).downloadAsync();
     });
 
-    return Promises.all()
+    return Promises.all();
   }
 
   render() {
@@ -45,7 +45,7 @@ export default class App extends Component {
       return (
         <AppLoading
           startAsync={this.handleResources}
-          onError={(err) => console.warn(err)}
+          onError={(err) => console.log(err)}
           onFinish={() => this.setState({ isLoadingComplete: true })}
         />
       )

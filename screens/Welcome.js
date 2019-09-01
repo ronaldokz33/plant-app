@@ -55,9 +55,9 @@ class Welcome extends Component {
                 keyExtractor={(item, index) => `${item.id}`}
                 renderItem={({ item }) => (
                     <Image
-                        source={item.sosurce}
+                        source={item.source}
                         resizeMode="contain"
-                        style={{ width, height: height / 2, overflow: 'visible' }}
+                        style={{ width, borderWidth: 2, height: height / 2, overflow: 'visible' }}
                     />
                 )}
                 onScroll={
@@ -128,7 +128,7 @@ class Welcome extends Component {
                     <Button shadow onPress={() => navigation.navigate('Signup')}>
                         <Text center semibold>Signup</Text>
                     </Button>
-                    <Button onPress={() => this.setState({ showTerms: true })}>
+                    <Button transparent onPress={() => this.setState({ showTerms: true })}>
                         <Text center caption gray>Terms of Services</Text>
                     </Button>
                 </Block>
@@ -159,11 +159,11 @@ export default Welcome;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F00'
+        backgroundColor: '#FFF'
     },
     stepsContainer: {
         position: 'absolute',
-        bottom: this.sizes.base * 3,
+        bottom: theme.sizes.base * 3,
         right: 0,
         left: 0
     },
