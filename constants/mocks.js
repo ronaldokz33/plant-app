@@ -4,42 +4,42 @@ const categories = [
         name: 'Plants',
         tags: ['products', 'inspirations'],
         count: 145,
-        image: require('../assets/images/plants.png')
+        image: require('../assets/icons/plants.png')
     },
     {
         id: 'seeds',
         name: 'Seeds',
         tags: ['products', 'shop'],
         count: 145,
-        image: require('../assets/images/seeds.png')
+        image: require('../assets/icons/seeds.png')
     },
     {
-        id: 'flowes',
+        id: 'flowers',
         name: 'Flowers',
         tags: ['products', 'inspirations'],
         count: 145,
-        image: require('../assets/images/flowes.png')
+        image: require('../assets/icons/flowers.png')
     },
     {
         id: 'sprayers',
         name: 'Sprayers',
         tags: ['products', 'shop'],
         count: 145,
-        image: require('../assets/images/sprayers.png')
+        image: require('../assets/icons/sprayers.png')
     },
     {
         id: 'pots',
         name: 'Pots',
         tags: ['products', 'shop'],
         count: 145,
-        image: require('../assets/images/pots.png')
+        image: require('../assets/icons/pots.png')
     },
     {
-        id: 'fertilizer',
-        name: 'Fertilizer',
+        id: 'fertilizers',
+        name: 'Fertilizers',
         tags: ['products', 'shop'],
         count: 145,
-        image: require('../assets/images/fertilizer.png')
+        image: require('../assets/icons/fertilizers.png')
     }
 ];
 
@@ -61,12 +61,12 @@ const products = [
 ];
 
 const explore = [
-    require('../assets/images/expore_1.png'),
-    require('../assets/images/expore_2.png'),
-    require('../assets/images/expore_3.png'),
-    require('../assets/images/expore_4.png'),
-    require('../assets/images/expore_5.png'),
-    require('../assets/images/expore_6.png')
+    require('../assets/images/explore_1.png'),
+    require('../assets/images/explore_2.png'),
+    require('../assets/images/explore_3.png'),
+    require('../assets/images/explore_4.png'),
+    require('../assets/images/explore_5.png'),
+    require('../assets/images/explore_6.png')
 ];
 
 const profile = {
