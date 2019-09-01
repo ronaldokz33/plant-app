@@ -6,17 +6,15 @@ import { theme } from '../constants';
 
 export default class Login extends Component {
     state = {
-        email: '',
-        senha: '',
-        errors: [
-
-        ],
+        email: 'ronaldo@atendup.com.br',
+        senha: '123',
+        errors: [],
         loading: false
     };
 
     handleLogin = () => {
         const { navigation } = this.props;
-        const { email, senha, errors } = this.state;
+        const { email, senha } = this.state;
         const errors = [];
 
         Keyboard.dismiss();
@@ -51,12 +49,15 @@ export default class Login extends Component {
                     <Block middle>
                         <Input
                             label="Email"
+                            error={hasErrors('email')}
                             style={[styles.input, hasErrors('email')]}
                             defaultValue={this.state.email}
                             onChangeText={(text) => this.setState({ email: text })}
                         />
                         <Input
                             label="Senha"
+                            secure
+                            error={hasErrors('senha')}
                             style={[styles.input, hasErrors('senha')]}
                             defaultValue={this.state.senha}
                             onChangeText={(text) => this.setState({ senha: text })}
