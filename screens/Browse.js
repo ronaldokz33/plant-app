@@ -83,8 +83,6 @@ Browse.defaultProps = {
     categories = mocks.categories
 };
 
-export default Browse;
-
 const styles = StyleSheet.create({
     header: {
         paddingHorizontal: theme.sizes.base * 2
@@ -117,3 +115,5 @@ const styles = StyleSheet.create({
         marginBottom: theme.sizes.base * 3.5
     }
 });
+
+export default Browse;
