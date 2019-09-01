@@ -22,11 +22,11 @@ export default class Login extends Component {
         this.setState({ errors: [], loading: true });
 
         if (email !== 'ronaldo@atendup.com.br') {
-            errors.push('email ')
+            errors.push('email')
         }
 
         if (senha !== '123') {
-            errors.push('senha ')
+            errors.push('senha')
         }
 
         if (errors.length > 0) {

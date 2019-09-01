@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
 import { StyleSheet, KeyboardAvoidingView, Alert } from 'react-native';
-import { Button, Block, Text } from '../components';
+import { Button, Block, Text, Input } from '../components';
 import { theme } from '../constants';
 
 export default class Forgot extends Component {
     state = {
-        email: ''
+        email: '',
+        errors: [],
+        loading: false
     }
 
     handleForgot = () => {
@@ -19,7 +21,7 @@ export default class Forgot extends Component {
         this.setState({ errors: [], loading: true });
 
         if (email !== 'ronaldo@atendup.com.br') {
-            errors.push('email ')
+            errors.push('email')
         }
 
         if (errors.length > 0) {
@@ -45,6 +47,10 @@ export default class Forgot extends Component {
     }
 
     render() {
+        const { navigation } = this.props;
+        const { loading, errors } = this.state;
+        const hasErrors = (key) => errors.includes(key) ? styles.hasErrors : null;
+
         return (
             <KeyboardAvoidingView style={styles.forgot} behavior="padding">
                 <Block padding={[0, theme.sizes.padding * 1.2]}>
