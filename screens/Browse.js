@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 
-import { StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { Button, Block, Text, Card } from '../components';
+import { StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { Button, Block, Text, Card, Badge } from '../components';
 import { theme, mocks } from '../constants';
 
 class Browse extends Component {
     state = {
-        active: 'Products'
+        active: 'Products',
+        categories: []
     };
+
+    componentDidMount() {
+        this.setState({ categories: this.props.categories });
+    }
+
+    handleTab = (tab) => {
+        const { categories } = this.props;
+        const filtered = categories.filter(
+            (item) => item.tags.includes(tab.toLowerCase())
+        );
+
+        this.setState({ active: tab, categories: filtered });
+    }
 
     renderTab = (tab) => {
         const { active } = this.state;
@@ -16,7 +30,7 @@ class Browse extends Component {
         return (
             <TouchableOpacity
                 key={`tab-${tab}`}
-                onPress={() => this.setState({ active: tab })}
+                onPress={() => this.handleTab(tab)}
                 style={
                     [
                         styles.tab,
@@ -29,17 +43,20 @@ class Browse extends Component {
         );
     }
 
+
+
     render() {
-        const { profile, navigation, categories } = this.props;
+        const { profile, navigation } = this.props;
+        const { categories } = this.state;
         const tabs = ['Products', 'Inspirations', 'Shop'];
 
         return (
             <Block>
-                <Block flex={false} row center space="between" style={StyleSheet.header}>
+                <Block flex={false} row center space="between" style={styles.header}>
                     <Text h1 light>Browse</Text>
                     <Button onPress={() => navigation.navigate('Settings')}>
                         <Image
-                            source={profile}
+                            source={profile.avatar}
                             style={styles.avatar}
                         />
                     </Button>
@@ -57,7 +74,7 @@ class Browse extends Component {
                         {
                             categories.map((item) => {
                                 return (
-                                    <TouchableOpacity key={item.id} onPress={() => navigation.navigate('Explore', { category })}>
+                                    <TouchableOpacity key={item.id} onPress={() => navigation.navigate('Explorer', { item })}>
                                         <Card center middle shadow style={styles.category}>
                                             <Badge margin={[0, 0, 15]} size={50} color="rgba(41, 216, 143, 0.20">
                                                 <Image
@@ -80,7 +97,7 @@ class Browse extends Component {
 
 Browse.defaultProps = {
     profile: mocks.profile,
-    categories = mocks.categories
+    categories: mocks.categories
 };
 
 const styles = StyleSheet.create({
