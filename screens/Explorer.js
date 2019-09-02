@@ -40,9 +40,9 @@ class Explorer extends Component {
     renderImage = (img, index) => {
         const { navigation } = this.props;
         const sizes = Image.resolveAssetSource(img);
-        const fullWidth = width - (theme.sizes.base * 2);
+        const fullWidth = width - (theme.sizes.base * 2.5);
         const resize = (sizes.width * 100) / fullWidth;
-        const imgWidth = resize > 72 ? fullWidth : sizes.width * 1.1;
+        const imgWidth = resize > 75 ? fullWidth : sizes.width * 1.1;
 
         return (
             <TouchableOpacity
@@ -66,9 +66,9 @@ class Explorer extends Component {
                 >
                     <Image source={mainImage} style={[styles.image, styles.mainImage]} />
                 </TouchableOpacity>
-                <Block row space="between">
+                <Block row space="between" wrap>
                     {
-                        images.map(this.renderImage)
+                        images.slice(1).map(this.renderImage)
                     }
                 </Block>
             </Block>
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     },
     mainImage: {
         minWidth: width - (theme.sizes.base * 2),
-        maxWidth: width - (theme.sizes.base * 2)
+        minHeight: width - (theme.sizes.base * 2)
     }
 });
 
