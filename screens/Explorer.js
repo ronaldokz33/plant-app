@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { Dimensions, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Animated, Dimensions, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Button, Block, Text, Card, Badge, Input } from '../components';
 import { theme, mocks } from '../constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -9,24 +10,38 @@ const { width, height } = Dimensions.get('window');
 
 class Explorer extends Component {
     state = {
+        searchFocus: new Animated.Value(0.6),
         searchString: ''
     };
 
+    handleSearchFocus = (status) => {
+        Animated.timing(
+            this.state.searchFocus, {
+                toValue: status ? 0.8 : 0.6,
+                duration: 150
+            }
+        ).start();
+    }
+
     renderSearch = () => {
-        const { searchString } = this.state;
+        const { searchString, searchFocus } = this.state;
+        const isEditing = searchFocus && searchString;
 
         return (
-            <Block middle flex={0.6} style={styles.search}>
+            <Block animated middle flex={searchFocus} style={styles.search}>
                 <Input
                     placeholder="Search"
+                    onFocus={() => this.handleSearchFocus(true)}
+                    onBlur={() => this.handleSearchFocus(false)}
                     placeholderTextColor={theme.colors.gray2}
                     style={styles.searchInput}
                     onChangeText={(text) => this.setState({ searchString: text })}
                     value={searchString}
+                    onRightPress={() => isEditing ? this.setState({ searchString: null }) : null}
                     rightStyle={styles.searchRight}
                     rightLabel={
                         <Icon
-                            name="search"
+                            name={isEditing ? "close" : "search"}
                             size={theme.sizes.base / 1.6}
                             color={theme.colors.gray2}
                             style={styles.searchIcon}
@@ -40,9 +55,9 @@ class Explorer extends Component {
     renderImage = (img, index) => {
         const { navigation } = this.props;
         const sizes = Image.resolveAssetSource(img);
-        const fullWidth = width - (theme.sizes.base * 2.5);
+        const fullWidth = width - (theme.sizes.padding * 2.5);
         const resize = (sizes.width * 100) / fullWidth;
-        const imgWidth = resize > 75 ? fullWidth : sizes.width * 1.1;
+        const imgWidth = resize > 75 ? fullWidth : sizes.width * 1;
 
         return (
             <TouchableOpacity
@@ -77,9 +92,16 @@ class Explorer extends Component {
 
     renderFooter = () => {
         return (
-            <Block style={styles.footer}>
-                <Text>render footer</Text>
-            </Block>
+            <LinearGradient
+                locations={[0.5, 1]}
+                style={styles.footer}
+                colors={['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.6)']}
+            >
+                <Button gradient style={{ width: width / 2.678 }} onPress={() => { }}>
+                    <Text bold white center>Filter</Text>
+                </Button>
+            </LinearGradient>
+
         );
     }
 
@@ -130,7 +152,7 @@ const styles = StyleSheet.create({
         top: theme.sizes.base / 1.6
     },
     explore: {
-        marginHorizontal: theme.sizes.base * 2
+        marginHorizontal: theme.sizes.base * 1.25
     },
     footer: {
         position: 'absolute',
@@ -147,13 +169,13 @@ const styles = StyleSheet.create({
     image: {
         minHeight: 100,
         maxHeight: 130,
-        maxWidth: width - (theme.sizes.base * 2),
-        marginBottom: theme.sizes.padding,
+        maxWidth: width - (theme.sizes.padding * 2.5),
+        marginBottom: theme.sizes.base,
         borderRadius: 4
     },
     mainImage: {
-        minWidth: width - (theme.sizes.base * 2),
-        minHeight: width - (theme.sizes.base * 2)
+        minWidth: width - (theme.sizes.padding * 2.5),
+        minHeight: width - (theme.sizes.padding * 2.5)
     }
 });
 
