@@ -28,7 +28,7 @@ const screens = createSwitchNavigator(
         defaultNavigationOptions: {
             headerStyle: {
                 height: theme.sizes.base * 4,
-                backgroundColor: theme.colors.white,
+                backgroundColor: theme.colors.white, 
                 borderBottomCollor: '#F00',
                 elevation: 0
             },

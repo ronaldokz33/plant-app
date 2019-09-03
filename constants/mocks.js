@@ -55,6 +55,9 @@ const products = [
             require('../assets/images/plants_3.png'),
             require('../assets/images/plants_1.png'),
             require('../assets/images/plants_2.png'),
+            require('../assets/images/plants_3.png'),
+            require('../assets/images/plants_1.png'),
+            require('../assets/images/plants_2.png'),
             require('../assets/images/plants_3.png')
         ]
     }

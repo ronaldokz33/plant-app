@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Animated, Dimensions, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Button, Block, Text, Card, Badge, Input } from '../components';
+import { Button, Block, Text, Input } from '../components';
 import { theme, mocks } from '../constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
