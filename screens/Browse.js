@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
-import { StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native';
 import { Button, Block, Text, Card, Badge } from '../components';
 import { theme, mocks } from '../constants';
+
+const { width, height } = Dimensions.get('window');
 
 class Browse extends Component {
     state = {
@@ -123,8 +125,8 @@ const styles = StyleSheet.create({
         marginHorizontal: theme.sizes.base * 2,
     },
     category: {
-        width: 150,
-        height: 150,
+        width: (width - (theme.sizes.base * 5)) / 2,
+        height: (width - (theme.sizes.base * 5)) / 2,
     },
     categories: {
         flexWrap: 'wrap',
