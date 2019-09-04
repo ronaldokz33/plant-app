@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { StyleSheet, KeyboardAvoidingView, Alert } from 'react-native';
-import { Button, Block, Text, Input } from '../components';
+import { Button, Block, Text, Input, Navbar } from '../components';
 import { theme } from '../constants';
 
 export default class Forgot extends Component {
@@ -54,6 +54,7 @@ export default class Forgot extends Component {
         return (
             <KeyboardAvoidingView style={styles.forgot} behavior="padding">
                 <Block padding={[0, theme.sizes.padding * 1.2]}>
+                    <Navbar />
                     <Text h1 bold>Forgot</Text>
                     <Block middle>
                         <Input

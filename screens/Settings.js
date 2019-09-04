@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { StyleSheet, ScrollView, Image, TextInput } from 'react-native';
-import { Button, Block, Text, Divider, Switch } from '../components';
+import { Button, Block, Text, Divider, Switch, Navbar } from '../components';
 import { theme, mocks } from '../constants';
 import Slider from 'react-native-slider';
 
@@ -52,10 +52,12 @@ class Settings extends Component {
 
     render() {
         const { profile, editing } = this.state;
+        const { navigation } = this.props;
 
         return (
             <Block>
-                <Block flex={false} row center space="between" style={StyleSheet.header}>
+                <Navbar leftMenu navigation={navigation} navigate="Browse" />
+                <Block flex={false} row center space="between" style={styles.header}>
                     <Text h1 light>Settings</Text>
                     <Button>
                         <Image

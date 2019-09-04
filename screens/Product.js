@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Animated, Dimensions, StyleSheet, Image, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Button, Block, Text, Card, Badge, Input, Divider } from '../components';
+import { Button, Block, Text, Card, Badge, Input, Divider, Navbar } from '../components';
 import { theme, mocks } from '../constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -39,35 +39,38 @@ class Product extends Component {
     }
 
     render() {
-        const { product } = this.props;
+        const { product, navigation } = this.props;
 
         return (
-            <ScrollView showsVerticalScrollIndicator={false}>
-                {this.renderGallery()}
+            <Block>
+                <Navbar leftMenu navigation={navigation} navigate="Explorer" />
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    {this.renderGallery()}
 
-                <Block style={styles.product}>
-                    <Text h2 bold>{product.name}</Text>
-                    <Block flex={false} row margin={[theme.sizes.base, 0]}>
-                        {
-                            product.tags.map((tag) => <Text key={`tag-${tag}`} caption gray style={styles.tag}>{tag}</Text>)
-                        }
-                    </Block>
-                    <Text light gray height={22} align="justify">{product.description}</Text>
-                    <Divider margin={[theme.sizes.padding * 0.9, 0]} />
+                    <Block style={styles.product}>
+                        <Text h2 bold>{product.name}</Text>
+                        <Block flex={false} row margin={[theme.sizes.base, 0]}>
+                            {
+                                product.tags.map((tag) => <Text key={`tag-${tag}`} caption gray style={styles.tag}>{tag}</Text>)
+                            }
+                        </Block>
+                        <Text light gray height={22} align="justify">{product.description}</Text>
+                        <Divider margin={[theme.sizes.padding * 0.9, 0]} />
 
-                    <Block>
-                        <Text semibold>Gallery</Text>
-                        <Block row margin={[theme.sizes.padding * 0.9, 0]}>
-                            {product.gallery.slice(1, 3).map(
-                                (img, index) => <Image source={img} style={styles.image} key={`gallery-${index}`} />
-                            )}
-                            <Block flex={false} card center middle color="rgba(197,204,214,0.20)" style={styles.more}>
-                                <Text gray>+{product.gallery.slice(3).length}</Text>
+                        <Block>
+                            <Text semibold>Gallery</Text>
+                            <Block row margin={[theme.sizes.padding * 0.9, 0]}>
+                                {product.gallery.slice(1, 3).map(
+                                    (img, index) => <Image source={img} style={styles.image} key={`gallery-${index}`} />
+                                )}
+                                <Block flex={false} card center middle color="rgba(197,204,214,0.20)" style={styles.more}>
+                                    <Text gray>+{product.gallery.slice(3).length}</Text>
+                                </Block>
                             </Block>
                         </Block>
                     </Block>
-                </Block>
-            </ScrollView>
+                </ScrollView>
+            </Block>
         );
     }
 }
