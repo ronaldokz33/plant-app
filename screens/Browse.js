@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions } from 'react-native';
-import { Button, Block, Text, Card, Badge } from '../components';
+import { Button, Block, Text, Card, Badge, Navbar } from '../components';
 import { theme, mocks } from '../constants';
 
 const { width, height } = Dimensions.get('window');
@@ -54,6 +54,7 @@ class Browse extends Component {
 
         return (
             <Block>
+                <Navbar leftMenu navigation={navigation} navigate="Login" />
                 <Block flex={false} row center space="between" style={styles.header}>
                     <Text h1 light>Browse</Text>
                     <Button onPress={() => navigation.navigate('Settings')}>

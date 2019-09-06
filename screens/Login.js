@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { StyleSheet, KeyboardAvoidingView, Keyboard, ActivityIndicator } from 'react-native';
-import { Button, Block, Text, Input } from '../components';
+import { Button, Block, Text, Input, Navbar } from '../components';
 import { theme } from '../constants';
 
 export default class Login extends Component {
@@ -42,38 +42,42 @@ export default class Login extends Component {
         const { loading, errors } = this.state;
         const hasErrors = key => errors.includes(key) ? styles.hasErrors : null;
 
+
         return (
             <KeyboardAvoidingView style={styles.login} behavior="padding">
-                <Block padding={[0, theme.sizes.base * 2]}>
-                    <Text h1 bold>Login</Text>
-                    <Block middle>
-                        <Input
-                            label="Email"
-                            error={hasErrors('email')}
-                            style={[styles.input, hasErrors('email')]}
-                            defaultValue={this.state.email}
-                            onChangeText={(text) => this.setState({ email: text })}
-                        />
-                        <Input
-                            label="Senha"
-                            secure
-                            error={hasErrors('senha')}
-                            style={[styles.input, hasErrors('senha')]}
-                            defaultValue={this.state.senha}
-                            onChangeText={(text) => this.setState({ senha: text })}
-                        />
-                        <Button gradient onPress={() => this.handleLogin()}>
-                            {
-                                loading
-                                    ?
-                                    <ActivityIndicator size="small" color="white" />
-                                    :
-                                    <Text bold white center>Login</Text>
-                            }
-                        </Button>
-                        <Button onPress={() => navigation.navigate('Forgot')}>
-                            <Text bold gray center style={{ textDecorationLine: 'underline' }}>Forgot your password?</Text>
-                        </Button>
+                <Block>
+                    <Navbar leftMenu navigation={navigation} navigate="Welcome" />
+                    <Block padding={[0, theme.sizes.base * 2]}>
+                        <Text h1 bold>Login</Text>
+                        <Block middle>
+                            <Input
+                                label="Email"
+                                error={hasErrors('email')}
+                                style={[styles.input, hasErrors('email')]}
+                                defaultValue={this.state.email}
+                                onChangeText={(text) => this.setState({ email: text })}
+                            />
+                            <Input
+                                label="Senha"
+                                secure
+                                error={hasErrors('senha')}
+                                style={[styles.input, hasErrors('senha')]}
+                                defaultValue={this.state.senha}
+                                onChangeText={(text) => this.setState({ senha: text })}
+                            />
+                            <Button gradient onPress={() => this.handleLogin()}>
+                                {
+                                    loading
+                                        ?
+                                        <ActivityIndicator size="small" color="white" />
+                                        :
+                                        <Text bold white center>Login</Text>
+                                }
+                            </Button>
+                            <Button onPress={() => navigation.navigate('Forgot')}>
+                                <Text bold gray center style={{ textDecorationLine: 'underline' }}>Forgot your password?</Text>
+                            </Button>
+                        </Block>
                     </Block>
                 </Block>
             </KeyboardAvoidingView>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { StyleSheet, KeyboardAvoidingView, Keyboard, ActivityIndicator, ScrollView } from 'react-native';
-import { Button, Block, Text, Input } from '../components';
+import { Button, Block, Text, Input, Navbar } from '../components';
 import { theme } from '../constants';
 
 export default class Signup extends Component {
@@ -47,8 +47,9 @@ export default class Signup extends Component {
 
         return (
             <KeyboardAvoidingView style={styles.signup} behavior="height">
+                <Navbar leftMenu navigation={navigation} navigate="Welcome"  />
                 <ScrollView>
-                    <Block padding={[0, theme.sizes.base * 2]}>
+                    <Block padding={[10, theme.sizes.base * 2]}>
                         <Text h1 bold>Signup</Text>
                         <Block middle>
                             <Input
